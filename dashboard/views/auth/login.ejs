@@ -31,7 +31,8 @@
         <form action="/login" method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label">Gebruikersnaam</label> <!-- Translated label to Dutch -->
-                <input type="text" name="username" class="form-control" required>
+                <input type="text" class="form-control" placeholder="Naam (bvb julian)" aria-describedby="value" name="value" id="value" required>
+                <span class="input-group-text" id="value">@sjakie.nl</span> 
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Wachtwoord</label> <!-- Translated label to Dutch -->
