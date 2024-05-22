@@ -17,7 +17,7 @@ module.exports = {
 				console.log("✅| Database")
 			)
 			const activities = [
-				{ name: 'MONSTERGANG!!', type: ActivityType.Listening },
+				{ name: 'SJAKIEE!!', type: ActivityType.Listening },
 				{ name: 'GEMAAKT DOOR JULIANRJC', type: ActivityType.Listening },
 			];
 		// client.user.setActivity('MONSTERGANG!!', { type: ActivityType.Listening })
@@ -26,7 +26,7 @@ module.exports = {
 			const randomActivity = activities[Math.floor(Math.random() * activities.length)];
 			client.user.setActivity(randomActivity.name, { type: randomActivity.type });
 		}
-		client.user.setPresence({activites: [{name: 'MONSTERGANG'}], status: "online"})
+		client.user.setPresence({activites: [{name: 'SJAKIE '}], status: "online"})
 
 		// Stel de activiteit in wanneer de bot voor het eerst online komt
 		setRandomActivity();
