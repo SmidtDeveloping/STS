@@ -28,26 +28,30 @@
         <table class="table table-dark table-borderless">
             <thead class="thead-dark">
                 <tr>
+                    <th scope="col">PLEK</th>
                     <th scope="col">USERNAME</th>
-                    <th scope="col">CASH</th>
-                    <th scope="col">BANK</th>
-                    <th scope="col">TOTAL</th>
+                    <th scope="col">PUNTEN</th>
+                    <th scope="col">WOORDEN GERADEN</th>
+                    <th scope="col">TOTAAL</th>
                 </tr>
             </thead>
             <tbody>
-                <% data.users.forEach(userObj=> { %>
+                <% data.users.forEach((userObj, index) => { %>
                     <tr>
+                        <td>
+                            <%= index + 1 %>
+                        </td>
                         <td>
                             <%= userObj.user_fetch.user.username %>
                         </td>
                         <td>
-                            <%= userObj.user.cash %>
+                            <%= userObj.user.punten %>
                         </td>
                         <td>
-                            <%= userObj.user.bank %>
+                            <%= userObj.user.woordenGeraden %>
                         </td>
                         <td>
-                            <%= userObj.user.cash + userObj.user.bank %>
+                            <%= userObj.user.punten + userObj.user.woordenGeraden %>
                         </td>
                     </tr>
                     <% }); %>

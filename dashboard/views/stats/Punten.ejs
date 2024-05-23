@@ -32,7 +32,7 @@
 <body class="bg-dark text-black d-flex align-items-center justify-content-center" style="height: 100vh;">
   <!-- Bootstrap flexbox klassen gebruikt om te centreren -->
   <div class="container">
-    <h1>Banken</h1>
+    <h1>Punten</h1>
 
     <h2>Zoeken:</h2>
     <input type="text" id="searchInput" onkeyup="search()" class="form-control mb-3" placeholder="ZOEK OP USERID">
@@ -40,8 +40,8 @@
       <% data.items.forEach(item=> { %>
 
         <li class="list-group-item text-black">
-          <%= item.userId %> Heeft €<%= item.cash %> contant en €<%= item.bank %> op de bank <%= %> <br> <a
-                    href="/dashboard/banken/beheer?userid=<%= item.userId %>"
+          <%= item.userId %> Heeft <%= item.woordenGeraden %> woord(en) geraden en heeft <%= item.punten %> punt(en)<%= %> <br> <a
+                    href="/dashboard/punten/beheer?userid=<%= item.userId %>"
                     class="btn btn-primary text-end">Beheer</a>
         </li>
         <% }); %>

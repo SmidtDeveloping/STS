@@ -27,14 +27,14 @@
 <body class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 100vh;"> <!-- Bootstrap flexbox klassen gebruikt om te centreren -->
     <div class="container">
         <p>Lege values worden <strong>NIET</strong> geupdate deze blijven hetzelfde</p>
-        <form action="/dashboard/banken/beheer?userid=<%= bank.userId %>" method="post">
+        <form action="/dashboard/punten/beheer?userid=<%= bank.userId %>" method="post">
             <div class="mb-3">
-                <label for="bank" class="form-label">Bank:</label>
-                <input type="number" class="form-control" id="bank" name="bank">
+                <label for="punt" class="form-label">Punten:</label>
+                <input type="number" class="form-control" id="punt" name="punt">
             </div>
             <div class="mb-3">
-                <label for="cash" class="form-label">Cash:</label>
-                <input type="number" class="form-control" id="cash" name="cash">
+                <label for="woord" class="form-label">Woorden geraden:</hlabel>
+                <input type="number" class="form-control" id="woord" name="woord">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

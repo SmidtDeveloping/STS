@@ -59,10 +59,7 @@
                         <div class="sidebar">
                             <ul class="nav gap-3">
                                 <li class="nav-item">
-                                    <a href="/dashboard/starting-balance" class="btn btn-outline-primary" id="button">Start balans</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/dashboard/create-reward" class="btn btn-outline-primary" id="button">Maak een reward role aan</a>
+                                    <a href="/dashboard/create-reward" class="btn btn-outline-primary" id="button">Maak een woord aan</a>
                                 </li>
                             </ul>
                         </div>
@@ -79,12 +76,6 @@
                                 <li class="nav-item">
                                     <a href="/dashboard/leaderboard" class="btn btn-outline-primary" id="button">Zie leaderboard</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="/dashboard/joinStats" class="btn btn-outline-primary" id="button">Zie joinstats</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/dashboard/messagestats" class="btn btn-outline-primary" id="button">Zie messagestats</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -94,11 +85,11 @@
             <div class="row">
                 <div class="col">
                     <div class="d-flex flex-column align-items-center">
-                        <h6>CURRENCYBEHEER</h6>
+                        <h6>PUNTENBEHEER</h6>
                         <div class="sidebar">
                             <ul class="nav gap-3">
                                 <li class="nav-item">
-                                    <a href="/dashboard/banken/zoek" type="button" class="btn btn-outline-primary">Zoek banken</a>
+                                    <a href="/dashboard/punten/zoek" type="button" class="btn btn-outline-primary">Puntenbeheer</a>
                                 </li>
                             </ul>
                         </div>
@@ -116,7 +107,7 @@
                                     <a href="/logout?sessionid=<%= data.req.id %>" class="btn btn-outline-danger">Uitloggen</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/auth/change?email=<%= data.req.user.username %>" class="btn btn-outline-primary">Verander wachtwoord</a>
+                                    <a href="/auth/redirect" class="btn btn-outline-primary">Verander wachtwoord</a>
                                 </li>
                             </ul>
                         </div>

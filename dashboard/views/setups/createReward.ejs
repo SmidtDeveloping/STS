@@ -14,14 +14,18 @@
         }
 
         .container {
+            position: absolute;
+            top: 25%;
+            left: 25%;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             background-color: #343a40;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            display: flex; /* Gebruik flexbox om elementen naast elkaar te plaatsen */
+            display: flex;
         }
+    
 
         .list {
             flex: 1; /* Laat de lijst groeien om beschikbare ruimte in te nemen */
@@ -62,39 +66,35 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
+        
     </style>
 </head>
 <body>
     <div class="container">
         <div class="list">
             <h1>Configuratie Formulier</h1>
-            <p>Role setup:</p>
+            <p>Woord setup:</p>
             <ul>
-                <% data.roloes.forEach(role => { %>
-                    <li>Role: <%= role.roleName %></li>
-                    <li>Reward: <%= role.reward  %></li>
+                <% data.words.forEach(word => { %>
+                    <li>Woord: <%= word.name %></li>
+                    <li>Punten: <%= word.points  %></li>
                     <br>
                 <% }); %>
             </ul>
-            <a href="/dashboard" class="btn btn-primary"">Terug naar dashboard</a>
+            <a href="/dashboard" class="btn btn-primary">Terug naar dashboard</a>
         </div>
 
         <form action="/dashboard/create-reward" method="POST">      
             <div class="mb-3">
-                <label for="rol" class="form-label">Selecteer een rol:</label>
-                <select id="rol" name="role" class="form-select">
-                    <% data.roles.forEach(role => { %>
-                        <option value="<%= role.name %>"><%= role.name %></option>
-                    <% }) %>
-                </select>
+                <label for="word" class="form-label">Woord:</label>
+                <input type="text" id="word" name="word" required class="form-control">
             </div>
             <div class="mb-3">
-                <label for="value" class="form-label">€:</label>
-                <input type="text" id="value" name="value" required class="form-control">
+                <label for="points" class="form-label">Punten:</label>
+                <input type="text" id="points" name="points" required class="form-control">
             </div>
             <button type="submit" class="btn btn-outline-primary">Opslaan</button>
         </form>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
