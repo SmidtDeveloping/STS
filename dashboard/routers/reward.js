@@ -41,4 +41,12 @@ router.post('/dashboard/create-reward', async (req, res) => {
     }
 });
 
+
+router.get("/dashboard/update-reward", async (req, res) => {
+    const woorden = await WordSchema.find({guildId: req.session.guildid})
+res.render("setups/updateReward", {woorden: woorden})
+})
+router.post("/dashboard/update-reward", async (req, res) => {
+
+})
 module.exports = router;

@@ -18,6 +18,7 @@ const router_auth = require("./routers/login_uit")
 const router_punten = require("./routers/Puntenbeheer")
 const router_woorden = require("./routers/reward")
 const router_leaderboard = require("./routers/leaderboard")
+const router_2fa = require("./routers/new2fa")
 // Sessie opslag
 
 const store = new mongoDBStore({
@@ -55,6 +56,7 @@ app.use(router_index)
 app.use(router_punten)
 app.use(router_woorden)
 app.use(router_leaderboard)
+app.use(router_2fa)
 
 
 //Export

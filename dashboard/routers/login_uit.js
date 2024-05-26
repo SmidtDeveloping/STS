@@ -1,15 +1,9 @@
 const app = require("express").Router()
-const mongoose = require("mongoose")
-const loginSchema = new mongoose.Schema({
-    username: String,
-    password: String,
-    name: String,
-    discordid: String
-})
+const Loginschema = require("../../db/login")
+
 const createToken = require("../../handelers/functions/generateToken")
 const TokenSchema = require("../../db/createToken")
 
-const Loginschema = mongoose.model('Login', loginSchema);
 
 app.get("/login", (req, res) => {
     res.render("auth/login")
@@ -30,7 +24,11 @@ app.post('/login', async (req, res) => {
     if (user && value === user.username && password === user.password) {
         req.session.user = user;
         req.session.guildid = guildid
-        res.redirect(`/dashboard`);
+        if (user.tweefa === true) {
+            res.redirect("/2fa/login")
+        } else {
+            res.redirect(`/dashboard`);
+        }
     } else {
         res.redirect('/login');
     }
@@ -42,12 +40,13 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+app.get("/auth", async (req, res) => {
+    res.redirect("/auth/redirect")
+})
 app.get("/auth/redirect", async (req, res) => {
     if (req.session.user) {
-        console.log(req.session);
         const email = req.session.user.username;
         const token = await createToken(email);
-        console.log(`Token: ${token} + Email: ${email}`);
         return res.redirect(`/auth/change?email=${email}&token=${token}`);
     } else {
         res.render("auth/auth")
@@ -60,26 +59,30 @@ app.post("/auth/redirect", async (req, res) => {
 
 
         try {
-            const findUser = await Loginschema.findOne({ username: email });
-            if (!findUser) {
-                return res.redirect('/auth/redirect');
-            }
-            const client = require("../../src/botClient");
-            const guild = client.guilds.cache.get(req.session.guildid);
-            console.log(findUser);
-            const user = await guild.members.fetch(findUser.discordid);
-            console.log(user);
-            const msg = await user.send("Ben jij het? Reageer J voor Ja of N voor Nee");
-            const collector = msg.channel.createMessageCollector({ time: 60000, max: 1 });
-            collector.on("collect", async (message) => {
-                const antwoord = message.content.toString();
-                if (antwoord.toLowerCase() === "j") {
-                    const token = await createToken(findUser.username);
-                    return res.redirect(`/auth/change?email=${findUser.username}&token=${token}`);
-                } else {
+            if (req.session.user) {
+                const findUser = await Loginschema.findOne({ username: email });
+                if (!findUser) {
                     return res.redirect('/auth/redirect');
                 }
-            });
+                const client = require("../../src/botClient");
+                const guild = client.guilds.cache.get(req.session.guildid);
+                console.log(findUser);
+                const user = await guild.members.fetch(findUser.discordid);
+                console.log(user);
+                const msg = await user.send("Ben jij het? Reageer J voor Ja of N voor Nee");
+                const collector = msg.channel.createMessageCollector({ time: 60000, max: 1 });
+                collector.on("collect", async (message) => {
+                    const antwoord = message.content.toString();
+                    if (antwoord.toLowerCase() === "j") {
+                        const token = await createToken(findUser.username);
+                        return res.redirect(`/auth/change?email=${findUser.username}&token=${token}`);
+                    } else {
+                        return res.redirect('/auth/redirect');
+                    }
+                });
+            } else {
+                res.redirect("/login")
+            }
         } catch (error) {
             console.error("Error occurred:", error);
             return res.redirect('/auth/redirect');

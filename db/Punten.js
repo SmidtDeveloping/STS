@@ -26,6 +26,9 @@ const userSchema = new mongoose.Schema({
     },
     woordenGeraden: {
         type: Number,
+    },
+    laatsteWoord: {
+        type: String
     }
 
 });

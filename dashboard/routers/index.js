@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const Loginschema = require("../../db/login");
 const client = require("../../src/botClient")
 
 router.get('/dashboard', async (req, res) => {
@@ -6,8 +7,9 @@ router.get('/dashboard', async (req, res) => {
         res.redirect('/login');
     } else {
 		const guild = client.guilds.cache.get(req.session.guildid)
-
-        res.render('dashboard/dashboard', {data: { req: req.session, guild: guild}});
+        const user = await Loginschema.findOne({username: req.session.user.username}).exec()
+        const is2fa = user.tweefa
+        res.render('dashboard/dashboard', {data: { req: req.session, guild: guild, check: is2fa}});
     }
 });
 

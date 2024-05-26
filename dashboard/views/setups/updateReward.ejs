@@ -27,14 +27,18 @@
 <body class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 100vh;"> <!-- Bootstrap flexbox klassen gebruikt om te centreren -->
     <div class="container">
         <p>Lege values worden <strong>NIET</strong> geupdate deze blijven hetzelfde</p>
-        <form action="/dashboard/punten/beheer?userid=<%= bank.userId %>" method="post">
+        <form action="/dashboard/update-reward" method="post">
             <div class="mb-3">
-                <label for="punt" class="form-label">Punten:</label>
-                <input type="number" class="form-control" id="punt" name="punt">
+                <label for="woord" class="form-label">Selecteer een woord:</label>
+                <select id="woord" name="woord" class="form-select">
+                    <% woorden.forEach(woord => { %>
+                        <option value="<%= woord.woord %>"><%= woord.woord %></option>
+                    <% }) %>
+                </select>
             </div>
             <div class="mb-3">
-                <label for="woord" class="form-label">Woorden geraden:</hlabel>
-                <input type="number" class="form-control" id="woord" name="woord">
+                <label for="reward" class="form-label">Reward:</hlabel>
+                <input type="number" class="form-control" id="reward" name="reward">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

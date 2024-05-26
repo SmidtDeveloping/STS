@@ -107,6 +107,15 @@
                                     <a href="/logout?sessionid=<%= data.req.id %>" class="btn btn-outline-danger">Uitloggen</a>
                                 </li>
                                 <li class="nav-item">
+
+                                    <% if (data.check) { %>
+                                        <a href="/auth/2fa" class="btn btn-outline-primary disabled">2FA Is al ingesteld</a>
+                                        <% } else { %>
+                                        <a href="/auth/2fa" class="btn btn-outline-primary" >2 Factor Authenticatie (2FA)</a>
+                                        <% } %>
+
+                                </li>
+                                <li class="nav-item">
                                     <a href="/auth/redirect" class="btn btn-outline-primary">Verander wachtwoord</a>
                                 </li>
                             </ul>
