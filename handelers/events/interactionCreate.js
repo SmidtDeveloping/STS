@@ -1,5 +1,4 @@
 const { Events, EmbedBuilder } = require('discord.js');
-
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
@@ -18,7 +17,7 @@ module.exports = {
 
 		try {
 			console.log(`Command: ${interaction}`);
-			await command.execute(interaction.client, interaction);
+			await command.execute(interaction);
 		} catch (error) {
 			e.addFields({name: "Error", value: `${error}`})
 			console.log(error);

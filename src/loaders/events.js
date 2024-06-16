@@ -1,7 +1,7 @@
 const client = require("../botClient")
 const fs = require("fs")
 const path = require('node:path')
-async function loadCommands() {
+function loadCommands() {
     const loaded_events = []
 
     const eventsPath = path.join(__dirname, '../../handelers/events');

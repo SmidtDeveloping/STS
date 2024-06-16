@@ -23,8 +23,13 @@ router.post('/dashboard/create-reward', async (req, res) => {
 
     const wordExists = await WordSchema.findOne({ guildId: guildid, word: word });
 
+    if (isNaN(points)) {
+        res.send('<script>alert("Puntenwaarde is geen getal! Druk op OK om terug te gaan naar het dashboard."); window.location.href = "/dashboard";</script>');
+        return; 
+       }
     if (wordExists) {
-        res.redirect("/error?error=Word-bestaat-al");
+        res.send('<script>alert("Woord bestaat al! Druk op ok om terug te gaan naar het dashboard."); window.location.href = "/dashboard";</script>');
+        return; 
     } else {
         const newWord = new WordSchema({
             guildId: guildid,
@@ -36,7 +41,7 @@ router.post('/dashboard/create-reward', async (req, res) => {
             res.redirect(`/dashboard`);
         }).catch(error => {
             console.error("Error saving new word:", error);
-            res.redirect("/error?error=Internal-server-error");
+            res.send('<script>alert("Internal Server Error! Druk op ok om terug te gaan naar het dashboard."); window.location.href = "/dashboard";</script>');
         });
     }
 });
@@ -47,6 +52,54 @@ router.get("/dashboard/update-reward", async (req, res) => {
 res.render("setups/updateReward", {woorden: woorden})
 })
 router.post("/dashboard/update-reward", async (req, res) => {
+    const { woord, reward } = req.body;
+
+    try {
+        const find_woord = await WordSchema.findOne({woord: woord}).exec()
+
+        if (!find_woord) {
+            return res.status(404).send('Woord niet gevonden');
+          }
+
+          find_woord.reward = reward;
+          await find_woord.save();
+
+        //   res.redirect("/dashboard")
+        res.send('<script>alert("Gelukt! Druk op ok om terug te gaan naar het dashboard."); window.location.href = "/dashboard";</script>');
+
+
+    } catch (error) {
+        console.error(error);
+        res.send('<script>alert("Internal Server Error! Druk op ok om terug te gaan naar het dashboard."); window.location.href = "/dashboard";</script>');
+
+    }
+
+})
+
+router.get("/dashboard/delete-reward", async (req, res) => {
+    const woorden = await WordSchema.find({guildId: req.session.guildid})
+res.render("setups/deleteReward", {woorden: woorden})
+})
+router.post("/dashboard/delete-reward", async (req, res) => {
+    const { woord } = req.body;
+
+    try {
+        const find_woord = await WordSchema.findOne({woord: woord}).exec()
+
+        if (!find_woord) {
+            return res.status(404).send('Woord niet gevonden');
+          }
+
+     await   WordSchema.deleteOne({guildId: req.session.guildid, woord: woord})
+
+        //   res.redirect("/dashboard")
+        res.send('<script>alert("Gelukt! Druk op ok om terug te gaan naar het dashboard."); window.location.href = "/dashboard";</script>');
+
+
+    } catch (error) {
+        console.error(error);
+        res.send('<script>alert("Internal Server Error! Druk op ok om terug te gaan naar het dashboard."); window.location.href = "/dashboard";</script>');
+    }
 
 })
 module.exports = router;

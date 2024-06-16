@@ -11,8 +11,8 @@ const client = new Client({
         presence: {
             activities: [{
                 type: ActivityType.Custom,
-                name: "custom", // name is exposed through the API but not shown in the client for ActivityType.Custom
-                state: "MONSTEGANNG ON TOP!"
+                name: "custom",
+                state: "SJAKIE ON TOP!"
             }]
         }
 

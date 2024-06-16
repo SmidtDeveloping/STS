@@ -1,7 +1,6 @@
 
 //Imports
 
-const client = require("../src/botClient")
 require("dotenv").config()
 const express = require("express");
 const session = require('express-session');
@@ -14,11 +13,10 @@ const app = express()
 
 
 const router_index = require("./routers/index")
-const router_auth = require("./routers/login_uit")
 const router_punten = require("./routers/Puntenbeheer")
 const router_woorden = require("./routers/reward")
 const router_leaderboard = require("./routers/leaderboard")
-const router_2fa = require("./routers/new2fa")
+const router_discordAuth =require("./routers/discordAuth")
 // Sessie opslag
 
 const store = new mongoDBStore({
@@ -51,12 +49,11 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 // Routers
 
 
-app.use(router_auth)
 app.use(router_index)
 app.use(router_punten)
 app.use(router_woorden)
 app.use(router_leaderboard)
-app.use(router_2fa)
+app.use(router_discordAuth)
 
 
 //Export

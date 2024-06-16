@@ -4,7 +4,7 @@ const fs = require("fs")
 const path = require('node:path')
 client.commands = new Collection();
 
-async function loadCommands() {
+function loadCommands() {
     const foldersPath = path.join(__dirname, '../../handelers/commands');
     const commandFolders = fs.readdirSync(foldersPath);
     const commandsloaded = []

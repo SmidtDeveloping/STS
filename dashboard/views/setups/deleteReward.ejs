@@ -26,9 +26,8 @@
 </head>
 <body class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 100vh;"> <!-- Bootstrap flexbox klassen gebruikt om te centreren -->
     <div class="container">
-        <p>Lege values worden <strong>NIET</strong> geupdate deze blijven hetzelfde</p>
         <p>Gelukt? Je word geredirect naar de mainpage</p>
-        <form action="/dashboard/update-reward" method="post">
+        <form action="/dashboard/delete-reward" method="post">
             <div class="mb-3">
                 <label for="woord" class="form-label">Selecteer een woord:</label>
                 <select id="woord" name="woord" class="form-select">
@@ -37,14 +36,9 @@
                     <% }) %>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="reward" class="form-label">Reward:</hlabel>
-                <input type="number" class="form-control" id="reward" name="reward">
-            </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Verwijder</button>
         </form>
     </div>
-    <!-- Bootstrap JS (optioneel, als je JavaScript-functies van Bootstrap wilt gebruiken) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

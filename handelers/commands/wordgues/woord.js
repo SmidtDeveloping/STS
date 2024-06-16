@@ -33,7 +33,7 @@ module.exports = {
     .setDescription("Command omtrent het word gues systeem")
     .addSubcommandGroup(sub_groep)
     ,
-    async execute(c, interaction) {
+    async execute( interaction) {
         const subcommando = interaction.options.getSubcommand();
         const gebruikerId = interaction.user.id;
         const user = await User.findOne({userId: gebruikerId}).exec()
@@ -56,59 +56,36 @@ module.exports = {
         // Functie om een woord te verliezen
         function loseLetter(word) {
             // Verlies een willekeurige letter uit het woord
-            console.log(`Word (LL) ${word}`);
             const randomIndex = Math.floor(Math.random() * word.length);
             const lostLetter = word[randomIndex];
-            console.log(`Word: ${word}`);
             const updatedWord = word.substring(0, randomIndex) + '_' + word.substring(randomIndex + 1);
-        
             return { updatedWord, lostLetter };
         }
-        console.log(subcommando);
         async function gues() {
             if (!user) {
                 createDB().then((user) => {console.log(`Nieuw db acc aangemaakt: ${user}`)})
-
             }
-            console.log('Fetching word from the database...');
-            const count = await db.countDocuments();
-            console.log('Number of documents in the database:', count);
-    
-            const index = Math.floor(Math.random() * count);
-            console.log('Random index selected:', index);
-    
+            const count = await db.countDocuments();    
+            const index = Math.floor(Math.random() * count);    
             const allDocuments = await db.collection.find({}).toArray();
-            const word = allDocuments[index].woord
-            console.log(word);
-            
-            if (word.length > 0) {
-                console.log('Willekeurig woord uit de database:', word);
-            } else {
-                console.log('Geen overeenkomend woord gevonden.');
-            }
-            
-    
+            const word = allDocuments[index].woord            
+
             const gameMode = getRandomGameMode();
-            console.log('Random game mode selected:', gameMode);
     
             let gameModeLogic;
             if (gameMode === 'Anagram') {
                 gameModeLogic = word.split('').sort(() => Math.random() - 0.5).join('');
-                console.log('Anagram game mode applied. Shuffled word:', gameModeLogic);
             } else if (gameMode === 'Letter Verlies') {
                 const { updatedWord, lostLetter } = loseLetter(word);
                 gameModeLogic = updatedWord;
-                console.log('Letter Verlies game mode applied. Updated word:', gameModeLogic , 'Lost letter:', lostLetter);
             }
     
             const embed = new EmbedBuilder()
                 .setTitle('Raad het Woord')
                 .setDescription(`Het te raden woord is: **${gameModeLogic}**`)
                 .addFields({ name: 'Acties', value: 'Reageer op dit bericht met /woord answer om het antwoord te geven of /woord skip om over te slaan. Je mag hier zo lang over doen als je wilt' }
-                    , { name: "Gamemode", value: `Spelmodus: **${gameMode}**` }
+                    , { name: "Gamemode", value: ` **${gameMode}**` }
                 );
-    
-            console.log('Sending embed response to the user...');
                 user.laatsteWoord = word
                 user.save()
             interaction.reply({ embeds: [embed], ephemeral: true });
@@ -147,7 +124,6 @@ module.exports = {
                 interaction.reply({content: "Voer eerst /woord gues_systeem gues uit", ephemeral: true})
             } {
                 gues();
-
             }
             
 

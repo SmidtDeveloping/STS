@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
-	async execute(client, interaction) {
+	async execute( interaction) {
 
 
 
@@ -20,7 +20,7 @@ module.exports = {
 
 
 		const embed = new EmbedBuilder()
-		.setThumbnail(interaction.client.user.displayAvatarURL({size: 63}))
+		.setThumbnail(interaction.client.user.displayAvatarURL({size: 1024}))
 		.setColor("Blue")
 		.setTimestamp()
 		.setFooter({text: `Pinged at:`})
@@ -31,7 +31,7 @@ module.exports = {
 			},
 			{
 				name: 'API',
-				value: `${Api}`
+				value: `${Api}Ms`
 			},
 			{
 				name: "Uptime",

@@ -61,6 +61,23 @@
                                 <li class="nav-item">
                                     <a href="/dashboard/create-reward" class="btn btn-outline-primary" id="button">Maak een woord aan</a>
                                 </li>
+                              
+                                <% if (data.woord) { %>
+                                    <!-- Knop is ingeschakeld als gebruiker is ingelogd -->
+                                    <li class="nav-item">
+                                        <a href="/dashboard/update-reward" class="btn btn-outline-primary" id="button">Update een woord</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/dashboard/delete-reward" class="btn btn-outline-primary" id="button">Delete een woord</a>
+                                    </li>
+                                <% } else { %>
+                                    <!-- Knop is uitgeschakeld als gebruiker niet is ingelogd -->
+                                    <li class="nav-item">
+                                        <a href="/dashboard/update-reward" class="btn btn-outline-primary disabled" id="button">Update een woord</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/dashboard/delete-reward" class="btn btn-outline-primary disabled" id="button">Delete een woord</a>
+                                    <% } %>
                             </ul>
                         </div>
                     </div>
@@ -106,18 +123,7 @@
                                 <li class="nav-item">
                                     <a href="/logout?sessionid=<%= data.req.id %>" class="btn btn-outline-danger">Uitloggen</a>
                                 </li>
-                                <li class="nav-item">
-
-                                    <% if (data.check) { %>
-                                        <a href="/auth/2fa" class="btn btn-outline-primary disabled">2FA Is al ingesteld</a>
-                                        <% } else { %>
-                                        <a href="/auth/2fa" class="btn btn-outline-primary" >2 Factor Authenticatie (2FA)</a>
-                                        <% } %>
-
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/auth/redirect" class="btn btn-outline-primary">Verander wachtwoord</a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>
