@@ -1,2 +1,1 @@
-**Sjakie Services discord bot:**
-  
+**Sjakie Services**
