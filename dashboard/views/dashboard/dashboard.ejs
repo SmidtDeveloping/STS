@@ -63,7 +63,6 @@
                                 </li>
                               
                                 <% if (data.woord) { %>
-                                    <!-- Knop is ingeschakeld als gebruiker is ingelogd -->
                                     <li class="nav-item">
                                         <a href="/dashboard/update-reward" class="btn btn-outline-primary" id="button">Update een woord</a>
                                     </li>
@@ -71,13 +70,15 @@
                                         <a href="/dashboard/delete-reward" class="btn btn-outline-primary" id="button">Delete een woord</a>
                                     </li>
                                 <% } else { %>
-                                    <!-- Knop is uitgeschakeld als gebruiker niet is ingelogd -->
                                     <li class="nav-item">
                                         <a href="/dashboard/update-reward" class="btn btn-outline-primary disabled" id="button">Update een woord</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="/dashboard/delete-reward" class="btn btn-outline-primary disabled" id="button">Delete een woord</a>
                                     <% } %>
+                                    <!-- <li class="nav-item">
+                                        <a href="/dashboard/starting-balance" class="btn btn-outline-primary" id="button">Start balance</a>
+                                    </li> -->
                             </ul>
                         </div>
                     </div>

@@ -5,7 +5,8 @@ const client = new Client({
             GatewayIntentBits.GuildMembers,
             GatewayIntentBits.GuildMessages,
             GatewayIntentBits.Guilds,
-            GatewayIntentBits.DirectMessages
+            GatewayIntentBits.DirectMessages,
+            GatewayIntentBits.GuildModeration
 
         ],
         presence: {
@@ -19,6 +20,7 @@ const client = new Client({
 
 
 })
+
 require("dotenv").config()
 client.login(process.env.TOKEN)
 

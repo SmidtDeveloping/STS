@@ -61,6 +61,9 @@ router.post("/dashboard/update-reward", async (req, res) => {
             return res.status(404).send('Woord niet gevonden');
           }
 
+          if(!reward || reward === find_woord.reward) {
+            return
+          }
           find_woord.reward = reward;
           await find_woord.save();
 
