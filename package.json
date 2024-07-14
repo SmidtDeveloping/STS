@@ -4,12 +4,22 @@
   "description": "**Sjakie Services discord bot:**",
   "main": "src/bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install axios body-parser connect-mongodb-session discord.js dotenv ejs express express-session mongoose speakeasy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.2"
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "connect-mongodb-session": "^5.0.0",
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.5.1",
+    "speakeasy": "^2.0.0"
   }
 }

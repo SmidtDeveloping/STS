@@ -17,12 +17,14 @@ const writeAuditLogs = (logs) => {
 
 let auditLogs = readAuditLogs();
 
+
 async function execute(auditLog) {
     const { action, extra: channel, executorId, targetId } = auditLog;
+    console.log(auditLog);
 	if (action !== AuditLogEvent.MessageDelete) return;
 	const executor = await client.users.fetch(executorId);
 	const target = await client.users.fetch(targetId);
-    console.log(`A message by ${target.tag} was deleted by ${executor.tag} in ${channel}.`);
+    console.log(`A message by ${target.tag} was deleted by ${executor.tag} in ${channel.name}.`);
 
 
 }
