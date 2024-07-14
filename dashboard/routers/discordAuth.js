@@ -8,7 +8,7 @@ app.get("/discord", async  (req, res) => {
     params.append("client_secret", process.env.LOGIN_CLIENT_SECRET);
     params.append("grant_type", "authorization_code");
     params.append("code", code);  
-    params.append("redirect_uri", "http://localhost:3000/discord");
+    params.append("redirect_uri", "https://sts.developingbyjulian.nl/discord");
 
     try {
         const response = await axios.post('https://discord.com/api/oauth2/token', params);
