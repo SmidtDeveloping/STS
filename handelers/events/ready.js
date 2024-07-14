@@ -19,7 +19,7 @@ module.exports = {
 			const activities = [
 				{ name: 'STS!!', type: ActivityType.Listening },
 				{ name: 'GEMAAKT DOOR JULIANRJC', type: ActivityType.Listening },
-				{name: "Website", type: ActivityType.Streaming, url: "https://developingbyjulian.nl"}
+				{name: "WEBSITE", type: ActivityType.Streaming, url: "https://developingbyjulian.nl"}
 			];
 		// client.user.setActivity('MONSTERGANG!!', { type: ActivityType.Listening })
 
