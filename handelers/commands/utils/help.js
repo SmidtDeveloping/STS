@@ -43,11 +43,11 @@ function groupCommandsByCategory(commands) {
         .addComponents(
           new ButtonBuilder()
             .setCustomId('previous')
-            .setLabel('Previous')
+            .setLabel('Vorige')
             .setStyle(ButtonStyle.Primary),
           new ButtonBuilder()
             .setCustomId('next')
-            .setLabel('Next')
+            .setLabel('Volgende')
             .setStyle(ButtonStyle.Primary),
         );
     
